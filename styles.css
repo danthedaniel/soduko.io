@@ -86,8 +86,10 @@ button:active {
   background-color: #efa0a0;
 }
 #board .group .cell:read-only {
+  cursor: default;
   color: white;
   background-color: #666;
+  pointer-events: none;
 }
 #board .group .cell:read-only:focus {
   background-color: #888;
