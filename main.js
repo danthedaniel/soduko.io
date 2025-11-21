@@ -7,6 +7,8 @@
  * @property {number} row
  */
 
+const empty = "0";
+
 // Use 0 for open cells.
 /** @type {number[][]} */
 const puzzle = [
@@ -43,16 +45,15 @@ function cellKeyDown(cell, event) {
 
   switch (event.key) {
     case "Backspace":
-    case "Delete":
+    case "Delete": {
       if (cell.readOnly) {
         return;
       }
 
-      cell.value = "";
-
-      const newCell = prevOpenCell(board, cell);
-      newCell.focus();
+      cell.value = empty;
+      cell.classList.add("empty");
       return;
+    }
     case "ArrowUp": {
       const coords = getCoords(board, cell);
       if (coords.row === 0) {
@@ -131,8 +132,7 @@ function cellKeyDown(cell, event) {
       }
 
       cell.value = event.key;
-      const newCell = nextOpenCell(board, cell);
-      newCell.focus();
+      cell.classList.remove("empty");
       return;
     }
   }
@@ -150,10 +150,12 @@ function loadPuzzle(board, puzzle) {
       cell.classList.remove("error");
 
       if (value === 0) {
-        cell.value = "";
+        cell.value = empty;
+        cell.classList.add("empty");
         cell.readOnly = false;
       } else {
         cell.value = value.toString();
+        cell.classList.remove("empty");
         cell.readOnly = true;
       }
     }
