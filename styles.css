@@ -73,11 +73,6 @@ button:active {
 #board .group .cell.empty {
   color: transparent;
 }
-#board .group .cell::-webkit-outer-spin-button,
-#board .group .cell::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 #board .group .cell:focus:not(:read-only) {
   background-color: #efefef;
   animation: blink 1.5s infinite;
