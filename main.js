@@ -344,22 +344,16 @@ function validate(board) {
   let valid = true;
 
   for (let i = 0; i < 9; i++) {
+    // Check the i-th row, col and group
     const row = getRow(board, i);
-    if (!validateCells(row)) {
-      markError(row);
-      valid = false;
-    }
-
     const col = getCol(board, i);
-    if (!validateCells(col)) {
-      markError(col);
-      valid = false;
-    }
-
     const group = getGroup(board, i);
-    if (!validateCells(group)) {
-      markError(group);
-      valid = false;
+
+    for (const cells of [row, col, group]) {
+      if (!validateCells(cells)) {
+        markError(cells);
+        valid = false;
+      }
     }
   }
 
@@ -376,10 +370,6 @@ function validateCells(cells) {
 
   for (const cell of cells) {
     const digit = parseInt(cell.value);
-    if (isNaN(digit)) {
-      return false;
-    }
-
     numbers.delete(digit);
   }
 
