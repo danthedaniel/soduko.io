@@ -51,17 +51,29 @@ button:active {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-
-  border: 1px solid black;
+  border: none;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
   aspect-ratio: 1;
   width: 100%;
+  box-sizing: border-box;
+}
+
+#board .group:nth-child(3n) {
+  border-right: none;
+}
+
+#board .group:nth-child(n + 7) {
+  border-bottom: none;
 }
 
 #board .group .cell {
   appearance: textfield;
   -moz-appearance: textfield;
-  border: 1px solid lightslategray;
-  aspect-ratio: 1;
+  border: none;
+  border-right: 1px solid lightslategray;
+  border-bottom: 1px solid lightslategray;
+  height: 100%;
   width: 100%;
   outline: none;
   text-align: center;
@@ -69,6 +81,15 @@ button:active {
   caret-color: transparent;
   -webkit-focus-ring-color: transparent;
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+#board .group .cell:nth-child(3n) {
+  border-right: none;
+}
+
+#board .group .cell:nth-child(n + 7) {
+  border-bottom: none;
 }
 #board .group .cell.empty {
   color: transparent;
